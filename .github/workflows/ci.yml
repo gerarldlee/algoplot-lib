@@ -23,6 +23,10 @@ jobs:
       # the guides (including Python, through npm pyodide) and TypeDoc type-checks
       # the public surface a second time.
       - run: npm run docs:build
+      # The published surface: pack every workspace, install the tarballs into a
+      # clean project, and run the same checks a consumer would (executeRun, the
+      # remark plugin both modes, SSR, element node-safety, npm pyodide).
+      - run: node tools/smoke.mjs
 
   deploy-docs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'

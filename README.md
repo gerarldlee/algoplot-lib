@@ -1,5 +1,7 @@
 # algoplot
 
+[![CI](https://github.com/gerarldlee/algoplot-lib/actions/workflows/ci.yml/badge.svg)](https://github.com/gerarldlee/algoplot-lib/actions/workflows/ci.yml)
+
 Run algorithm code, record every step as a diff of the visualised world, and play it
 back as a scrubbable player — including straight out of a markdown fence:
 
