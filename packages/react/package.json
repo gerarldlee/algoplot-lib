@@ -1,0 +1,45 @@
+{
+  "name": "@algoplot/react",
+  "version": "0.1.0",
+  "description": "React components for @algoplot/core: the AlgoPlayer, transport controls, and 17 structure views.",
+  "license": "MIT",
+  "author": "Gerald Lee <gerarldlee@gmail.com>",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./styles.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "styles.css",
+    "!src/**/__tests__/**"
+  ],
+  "scripts": {
+    "build": "vite build && tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@algoplot/core": "^0.1.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "keywords": [
+    "react",
+    "algorithm",
+    "visualization",
+    "player"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

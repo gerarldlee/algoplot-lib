@@ -1,0 +1,995 @@
+/* @algoplot/react player styles.
+   Lifted from the algoplot app's src/ui/styles.css by tools/extract-styles.mjs and
+   gated under `.ak-player`: every selector is prefixed, and the palette + --cellw are
+   declared on the root itself, so a host themes the widget by redefining any of these
+   custom properties on `.ak-player` (or overriding the whole block by loading its own
+   rules after this file). `.chrome`/`.log-area` heights read var(--s3, 300px) /
+   var(--s4, 96px) from the app's split sizes, so a host can size them from an ancestor
+   without touching the stylesheet. */
+
+.ak-player {
+  color-scheme: dark;
+  --bg: #0f172a;
+  --panel: #1e293b;
+  --panel-2: #16223a;
+  --border: #334155;
+  --text: #e2e8f0;
+  --dim: #94a3b8;
+  --faint: #64748b;
+  --accent: #38bdf8;
+  --warn: #fbbf24;
+  --danger: #ef4444;
+  --node-fill: #1e293b;
+  --node-stroke: #64748b;
+  --edge: #475569;
+  --link: #475569;
+  --svg-dim: #94a3b8;
+  --bar-idle: #334155;
+  --on-accent: #0b1220;
+  --range-text: #0b1220;
+  --op-text: #f8fafc;
+  --op-shadow: rgba(0, 0, 0, 0.7);
+  --hover: #475569;
+  --accent-hover: #7dd3fc;
+  --success: #4ade80;
+  --error-text: #fca5a5;
+  --cellw: 26px;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+}
+
+/* The app sets this globally; the widget has to carry its own, or a host page with
+   content-box sizing lays the views' borders out two pixels wide everywhere. */
+.ak-player,
+.ak-player * {
+  box-sizing: border-box;
+}
+
+.ak-player button,
+.ak-player input,
+.ak-player select,
+.ak-player textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+.ak-player .field {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 8px;
+  color: var(--text);
+  outline: none;
+}
+
+.ak-player .field:focus {
+  border-color: var(--accent);
+}
+
+.ak-player .btn {
+  background: var(--border);
+  border: none;
+  border-radius: 6px;
+  color: var(--text);
+  padding: 7px 11px;
+  cursor: pointer;
+  transition: background 0.12s;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.ak-player .btn:hover:not(:disabled) {
+  background: var(--hover);
+}
+
+.ak-player .btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.ak-player .btn.primary {
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+
+.ak-player .btn.primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.ak-player .btn.danger {
+  background: color-mix(in srgb, var(--danger) 26%, var(--panel));
+  color: var(--error-text);
+}
+
+.ak-player .btn.danger:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--danger) 42%, var(--panel));
+}
+
+.ak-player a.btn {
+  display: inline-block;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.ak-player .chrome {
+  /* Never hidden, so unconditional — the console is where the transport and the memory
+     graph live, and 200px is the point below which the transport starts to be cut off. */
+  min-height: 200px;
+}
+
+.ak-player .view-area {
+  flex: 1;
+  /* The visualisation is the one pane that is never hidden, so its floor is unconditional:
+     inside a fixed-height column `flex: 1` would otherwise collapse to nothing whenever
+     the console and logs took their share. */
+  min-height: 100px;
+  overflow: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+
+.ak-player .placeholder {
+  color: var(--faint);
+  text-align: center;
+  padding: 48px 20px;
+  font-size: 14px;
+}
+
+.ak-player .unknown-view {
+  color: var(--danger);
+  font-size: 12px;
+}
+
+.ak-player .error {
+  background: color-mix(in srgb, var(--danger) 14%, transparent);
+  border-top: 1px solid var(--danger);
+  border-bottom: 1px solid var(--danger);
+  color: var(--error-text);
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+.ak-player .err-line {
+  color: var(--warn);
+}
+
+.ak-player .caption {
+  min-height: 38px;
+  padding: 9px 14px;
+  font-family: Consolas, 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--warn);
+  background: var(--panel-2);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+}
+
+.ak-player .metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 14px 8px;
+  background: var(--panel-2);
+}
+
+.ak-player .metrics:empty {
+  display: none;
+}
+
+.ak-player .metric {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 11px;
+  color: var(--text);
+}
+
+.ak-player .metric b {
+  color: var(--accent);
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.ak-player .transport {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+}
+
+.ak-player .scrub {
+  flex: 1;
+  accent-color: var(--accent);
+}
+
+.ak-player .counter {
+  font-family: Consolas, monospace;
+  font-size: 12px;
+  color: var(--dim);
+  min-width: 90px;
+  text-align: right;
+}
+
+/* The tabbed log area: Log Output and Input, one strip one body. `var(--s4)` is the split
+   and it covers the strip as well as the content, so the strip is `flex: none` and this
+   body takes the rest. The height stays a custom property rather than an inline style from
+   App, because the phone block below has to be able to turn it back to `auto`. */.ak-player .log-area {
+  display: flex;
+  flex-direction: column;
+  height: var(--s4, 96px);
+  flex: none;
+  min-height: 0;
+  background: var(--bg);
+}
+
+.ak-player .log-area-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 6px 14px;
+  font-family: Consolas, monospace;
+  font-size: 12px;
+}
+
+.ak-player .log-area-body[hidden] {
+  display: none;
+}
+
+/* The `6px 14px` above is log-output spacing: it exists to set monospace text off the panel
+   edge. On the Input tab it is pure inset, and it is what stops the textarea reaching the
+   strip, so it comes off. Written as a compound selector rather than a lone
+   `.log-area-input` so it outranks the base rule wherever the two land in the file — at equal
+   specificity the later one wins, which is the same silent-death trap as the legend's
+   per-entry overrides. */.ak-player .log-area-body.log-area-input {
+  padding: 0;
+}
+
+.ak-player .logs-empty {
+  color: var(--faint);
+}
+
+.ak-player .log-line {
+  color: var(--dim);
+  line-height: 1.5;
+}
+
+/* A log line knows which step wrote it, so it is also the cheapest way to navigate a long
+   run. Keyboard-operable for the same reason. */.ak-player .log-line[role='button'] {
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.ak-player .log-line[role='button']:hover {
+  background: var(--hover);
+  color: var(--text);
+}
+
+.ak-player .log-line.current {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--text);
+}
+
+/* ---------- memory graph ---------- */.ak-player .mem-graph {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px 8px;
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+}
+
+.ak-player .mem-label {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  font-size: 11px;
+  color: var(--faint);
+}
+
+.ak-player .mem-val {
+  font-family: Consolas, 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.ak-player .mem-val.warn {
+  color: var(--danger);
+}
+
+.ak-player .mem-plot {
+  flex: 1;
+  height: 40px;
+  min-width: 0;
+  overflow: visible;
+}
+
+.ak-player .mem-area {
+  fill: color-mix(in srgb, var(--accent) 16%, transparent);
+  stroke: none;
+}
+
+.ak-player .mem-line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.25;
+  /* The viewBox is 240 wide but stretched to the panel, so keep the line from thinning
+     out or fattening with the resize. */
+  vector-effect: non-scaling-stroke;
+}
+
+.ak-player .mem-cursor {
+  stroke: var(--border);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.ak-player .mem-dot {
+  fill: var(--accent);
+  /* Undo the non-uniform x/y scaling of preserveAspectRatio="none". */
+  vector-effect: non-scaling-size;
+}
+
+/* ---------- right-column chrome (caption/metrics/transport/logs) ---------- */.ak-player .chrome {
+  flex: none;
+  height: var(--s3, 300px);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+}
+
+.ak-player .chrome-main {
+  flex: 1;
+  /* the app has `min-height: 200` here — no unit, so it is ignored. The 200px
+     floor is `.chrome`'s; this line was dead where it came from and is not copied. */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ---------- array view ---------- */.ak-player .array-view {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ak-player .array-ranges {
+  display: flex;
+  gap: 3px;
+  height: 20px;
+}
+
+.ak-player .range-cell {
+  border-radius: 4px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--on-accent);
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.ak-player .array-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 260px;
+}
+
+.ak-player .slot {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  min-width: 0;
+}
+
+.ak-player .slot-value {
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: var(--text);
+  font-family: Consolas, monospace;
+}
+
+.ak-player .bar {
+  width: 100%;
+  background: var(--bar-idle);
+  border-radius: 5px 5px 0 0;
+  min-height: 6px;
+  transition: height 0.18s ease, background-color 0.15s ease;
+}
+
+.ak-player .slot-index {
+  font-size: 10px;
+  color: var(--faint);
+  margin-top: 4px;
+  font-family: Consolas, monospace;
+}
+
+/* ---------- grid view ---------- */.ak-player .grid-view {
+  display: grid;
+  gap: 5px;
+  width: min(440px, 100%);
+  margin: 0 auto;
+}
+
+.ak-player .gcell {
+  aspect-ratio: 1;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(14px, 3.4vmin, 24px);
+  color: var(--op-text);
+  text-shadow: 0 1px 2px var(--op-shadow);
+  transition: background-color 0.15s ease;
+  font-weight: 600;
+}
+
+/* ---------- list view ---------- */.ak-player .list-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px;
+}
+
+.ak-player .list-node-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.ak-player .list-pointers {
+  height: 18px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.ak-player .list-ptr {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.ak-player .list-node {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: var(--panel);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Consolas, monospace;
+  font-size: 16px;
+  color: var(--op-text);
+  text-shadow: 0 1px 2px var(--op-shadow);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.ak-player .list-index {
+  font-size: 10px;
+  color: var(--faint);
+}
+
+.ak-player .list-arrow {
+  color: var(--faint);
+  font-size: 22px;
+  margin-top: 12px;
+}
+
+.ak-player .list-null {
+  color: var(--faint);
+  font-size: 20px;
+  margin-left: 6px;
+}
+
+/* ---------- svg views ---------- */.ak-player .graph-view,
+  .ak-player .tree-view,
+  .ak-player .trie-view,
+  .ak-player .forest-view {
+  width: 100%;
+  height: auto;
+  max-height: 46vh;
+}
+
+.ak-player .node-label {
+  fill: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.ak-player .node-attr {
+  fill: var(--dim);
+  font-size: 11px;
+  font-family: Consolas, monospace;
+  paint-order: stroke;
+  stroke: var(--bg);
+  stroke-width: 3px;
+}
+
+.ak-player .edge-weight {
+  fill: var(--text);
+  font-size: 11px;
+  font-family: Consolas, monospace;
+  paint-order: stroke;
+  stroke: var(--bg);
+  stroke-width: 3.5px;
+}
+
+.ak-player .tree-link {
+  stroke: var(--link);
+  stroke-width: 2;
+  fill: none;
+}
+
+.ak-player .trie-edge-label {
+  fill: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: Consolas, monospace;
+  paint-order: stroke;
+  stroke: var(--bg);
+  stroke-width: 3.5px;
+}
+
+/* ---------- string view ---------- */.ak-player .string-view {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-x: auto;
+}
+
+.ak-player .string-caption {
+  color: var(--faint);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.ak-player .string-row {
+  display: flex;
+  gap: 3px;
+}
+
+.ak-player .scell {
+  width: var(--cellw);
+  height: 32px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel);
+  border-radius: 5px;
+  font-family: Consolas, monospace;
+  font-size: 14px;
+  color: var(--op-text);
+  text-shadow: 0 1px 2px var(--op-shadow);
+  transition: background-color 0.12s ease;
+}
+
+.ak-player .string-matches {
+  color: var(--success);
+  font-size: 12px;
+  margin-top: 6px;
+  min-height: 16px;
+  font-family: Consolas, monospace;
+}
+
+/* ---------- matrix view ---------- */.ak-player .matrix-view {
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  padding: 6px;
+}
+
+.ak-player .matrix-table {
+  border-collapse: collapse;
+}
+
+.ak-player .matrix-table th,
+  .ak-player .matrix-table td {
+  border: 1px solid var(--border);
+  padding: 10px 16px;
+  text-align: center;
+  font-family: Consolas, monospace;
+  font-size: 14px;
+  transition: background-color 0.15s ease;
+}
+
+.ak-player .matrix-table td {
+  background: var(--panel);
+  color: var(--op-text);
+  min-width: 90px;
+}
+
+.ak-player .matrix-table th {
+  color: var(--dim);
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.ak-player .matrix-table th.corner {
+  border: none;
+}
+
+.ak-player .rowhead {
+  text-align: right !important;
+}
+
+.ak-player .rowhead span {
+  display: block;
+}
+
+.ak-player .mixbar-h,
+  .ak-player .mixbar-v {
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.ak-player .mixbar-h {
+  height: 6px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.ak-player .mixbar-v {
+  height: 6px;
+  width: 80px;
+  margin: 0 auto 4px;
+}
+
+.ak-player .mixbar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.25s ease;
+}
+
+.ak-player .matrix-table em {
+  display: block;
+  font-style: normal;
+  color: var(--accent);
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+/* ---------- distribution view ---------- */.ak-player .dist-view {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ak-player .dist-view svg {
+  width: 100%;
+  height: auto;
+  max-height: 44vh;
+}
+
+.ak-player .dist-value {
+  fill: var(--text);
+  font-size: 12px;
+  font-family: Consolas, monospace;
+}
+
+.ak-player .dist-name {
+  fill: var(--dim);
+  font-size: 12px;
+}
+
+.ak-player .evidence-log {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  max-height: 130px;
+  overflow: auto;
+}
+
+.ak-player .evidence-title {
+  color: var(--faint);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.6px;
+  margin-bottom: 4px;
+}
+
+.ak-player .evidence-log ol {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--dim);
+  line-height: 1.6;
+  columns: 2;
+  column-gap: 24px;
+}
+
+/* ---------- sequence view ---------- */.ak-player .seq-view,
+  .ak-player .plot-view,
+  .ak-player .net-view,
+  .ak-player .gantt-view,
+  .ak-player .book-view,
+  .ak-player .flow-view {
+  width: 100%;
+  height: 100%;
+}
+
+.ak-player .seq-msg {
+  fill: var(--text);
+  font-size: 12px;
+  paint-order: stroke;
+  stroke: var(--bg);
+  stroke-width: 3px;
+}
+
+.ak-player .seq-act {
+  fill: var(--text);
+  font-size: 12px;
+}
+
+.ak-player .seq-lock {
+  fill: var(--op-text);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* a free lock sits on the idle bar colour, so it needs the panel text colour
+   rather than the on-fill colour used for owned locks */.ak-player .seq-lock-free {
+  fill: var(--text);
+}
+
+/* ---------- plot view ---------- */.ak-player .plot-tick {
+  fill: var(--dim);
+  font-size: 11px;
+}
+
+.ak-player .plot-pt-label,
+  .ak-player .plot-text {
+  fill: var(--text);
+  font-size: 12px;
+  paint-order: stroke;
+  stroke: var(--bg);
+  stroke-width: 3px;
+}
+
+/* ---------- net view ---------- */.ak-player .net-head {
+  fill: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ak-player .net-sub {
+  fill: var(--faint);
+  font-size: 10px;
+}
+
+.ak-player .net-flow {
+  font-size: 12px;
+  font-weight: 600;
+  fill: var(--faint);
+}
+
+/* ---------- gantt view ---------- */.ak-player .gantt-row {
+  fill: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ak-player .gantt-tick {
+  fill: var(--faint);
+  font-size: 10px;
+}
+
+.ak-player .gantt-bar-label {
+  fill: var(--op-text);
+  font-size: 11px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: rgba(0, 0, 0, 0.45);
+  stroke-width: 2.5px;
+}
+
+.ak-player .gantt-cursor {
+  fill: var(--text);
+  font-size: 11px;
+  paint-order: stroke;
+  stroke: var(--bg);
+  stroke-width: 3px;
+}
+
+/* ---------- book view ---------- */.ak-player .book-head {
+  fill: var(--faint);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ak-player .book-price {
+  fill: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: var(--bg);
+  stroke-width: 3px;
+}
+
+.ak-player .book-qty {
+  fill: var(--dim);
+  font-size: 11px;
+}
+
+.ak-player .book-mid {
+  fill: var(--dim);
+  font-size: 11px;
+}
+
+.ak-player .book-last {
+  fill: var(--dim);
+  font-size: 11px;
+  font-family: Consolas, monospace;
+}
+
+/* ---------- deck view ---------- */.ak-player .deck-view {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+}
+
+.ak-player .deck-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--faint);
+}
+
+.ak-player .deck-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ak-player .deck-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.ak-player .deck-cell-label {
+  font-size: 10px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-height: 12px;
+}
+
+.ak-player .deck-box {
+  min-width: 56px;
+  padding: 8px 12px;
+  text-align: center;
+  background: var(--node-fill);
+  border: 1.5px solid var(--node-stroke);
+  border-radius: 7px;
+  font-family: Consolas, monospace;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.ak-player .deck-box.deck-peek {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.ak-player .deck-empty {
+  color: var(--faint);
+  font-size: 13px;
+  font-style: italic;
+  padding: 8px;
+}
+
+.ak-player .deck-end {
+  color: var(--faint);
+  font-size: 16px;
+}
+
+/* ---------- flow view ---------- */.ak-player .flow-label {
+  fill: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ak-player .flow-q {
+  fill: var(--dim);
+  font-size: 10px;
+  font-family: Consolas, monospace;
+}
+
+.ak-player .flow-drop {
+  fill: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* ---------- extended labels ---------- */.ak-player .edge-text {
+  fill: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: var(--bg);
+  stroke-width: 3px;
+}
+
+.ak-player .tree-annot {
+  fill: var(--warn);
+  font-size: 11px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: var(--bg);
+  stroke-width: 3px;
+}
+
+.ak-player .trie-tag {
+  fill: var(--dim);
+  font-size: 10px;
+  font-family: Consolas, monospace;
+  paint-order: stroke;
+  stroke: var(--bg);
+  stroke-width: 3px;
+}
+
+.ak-player .list-arrow-doubly {
+  color: var(--accent);
+}
+
+/* Below 900px the app turns its fixed panes back into content. The player has no
+   editor or splitter, so the three rules it shares are the ones lifted here: the
+   visualisation gets a height of its own in a scrolling page (its `flex: 1` would
+   otherwise resolve against nothing), and the chrome/log panes stop being fixed so the
+   transport cannot be pushed off a short screen. */
+@media (max-width: 900px) {
+  .ak-player .view-area {
+    min-height: 60vh;
+  }
+
+  .ak-player .chrome,
+  .ak-player .log-area {
+    height: auto;
+  }
+
+  .ak-player .log-area {
+    max-height: 40vh;
+  }
+}

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.vite/
+*.tgz
+.DS_Store
+docs/dist/
+docs/.astro/
+docs/public/api/

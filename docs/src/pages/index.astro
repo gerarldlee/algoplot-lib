@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Home">
+  <section class="hero">
+    <p class="tag">record · ship · scrub</p>
+    <h1>Algorithm players,<br />straight out of markdown.</h1>
+    <p class="lead">
+      algoplot runs your algorithm at <strong>build time</strong>, records every step as a
+      diff of the visualised world, and replaces the fence with a scrubbable player. Your
+      readers never download — let alone execute — your code.
+    </p>
+    <p>
+      <a href="guides/getting-started/">Get started →</a>
+      &nbsp;·&nbsp;
+      <a href="guides/demos/">See it run →</a>
+      &nbsp;·&nbsp;
+      <a href="api/">API reference</a>
+    </p>
+  </section>
+
+  <h2>Five packages, one job each</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>@algoplot/core <span class="badge">engine</span></h3>
+      <p>The <code>viz.*</code> API, the recorder, diffs and replay, the player store, the worker runner, the language registry. No UI.</p>
+    </div>
+    <div class="card">
+      <h3>@algoplot/remark <span class="badge">build time</span></h3>
+      <p>Turns <code>```algoplot</code> fences into precomputed players. A failed run fails the build, with position.</p>
+    </div>
+    <div class="card">
+      <h3>@algoplot/react <span class="badge">react 18/19</span></h3>
+      <p><code>AlgoPlayer</code> plus transport, memory chart, log panel and every structure view. SSR-safe.</p>
+    </div>
+    <div class="card">
+      <h3>@algoplot/element <span class="badge">no framework</span></h3>
+      <p><code>&lt;algoplot-player&gt;</code> as a web component: one script tag, styles in a shadow root.</p>
+    </div>
+    <div class="card">
+      <h3>@algoplot/python <span class="badge">pyodide</span></h3>
+      <p>Registers Python for fences and the worker. Import once; the runner does the rest.</p>
+    </div>
+  </div>
+
+  <h2>The fence contract</h2>
+  <pre><code>```algoplot js &#123;"input":&#123;"arr":[5,3,8,1]&#125;&#125;
+const a = viz.array(input.arr);
+for (let i = 0; i &lt; a.length - 1; i++)
+  if (a.compare(i, i + 1) &gt; 0) a.swap(i, i + 1);
+viz.step('done');
+```</code></pre>
+  <p>
+    Options are a strict JSON object — <code>input</code>, <code>seed</code>,
+    <code>maxSteps</code>, <code>maxMs</code> — and a typo is a build error rather than a
+    silent wrong run. Full grammar in the <a href="guides/fences/">fences guide</a>.
+  </p>
+
+  <h2>Where next</h2>
+  <table>
+    <thead>
+      <tr><th>If you are…</th><th>Start at</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>writing docs in MDX</td><td><a href="guides/fences/">Fences</a> (jsx mode) → <a href="guides/react/">React</a></td></tr>
+      <tr><td>writing plain markdown</td><td><a href="guides/element/">Element</a> (html mode)</td></tr>
+      <tr><td>building a React app</td><td><a href="guides/getting-started/">Getting started</a> → <a href="guides/react/">React</a></td></tr>
+      <tr><td>porting Python algorithms</td><td><a href="guides/python/">Python</a></td></tr>
+      <tr><td>just curious</td><td><a href="guides/demos/">Demos</a></td></tr>
+    </tbody>
+  </table>
+</Base>

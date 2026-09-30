@@ -1,0 +1,39 @@
+{
+  "name": "@algoplot/element",
+  "version": "0.1.0",
+  "description": "<algoplot-player> custom element: a self-contained, framework-free algoplot player for any HTML page or static-site generator.",
+  "license": "MIT",
+  "author": "Gerald Lee <gerarldlee@gmail.com>",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "!src/**/__tests__/**"
+  ],
+  "scripts": {
+    "build": "vite build && tsc -p tsconfig.build.json"
+  },
+  "devDependencies": {
+    "@algoplot/core": "^0.1.0",
+    "@algoplot/react": "^0.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "keywords": [
+    "web-component",
+    "custom-element",
+    "algorithm",
+    "visualization"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

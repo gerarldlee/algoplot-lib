@@ -1,0 +1,37 @@
+{
+  "name": "algoplot-lib",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "docs"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "build": "npm run build -w @algoplot/core && npm run build -w @algoplot/python && npm run build -w @algoplot/react && npm run build -w @algoplot/remark && npm run build -w @algoplot/element",
+    "api": "typedoc",
+    "docs": "npm run dev -w docs",
+    "docs:build": "npm run api && npm run build -w docs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "@types/node": "^22.10.0",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "eslint": "^9.19.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.18",
+    "globals": "^15.14.0",
+    "pyodide": "^314.0.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typedoc": "^0.28.20",
+    "typescript": "~5.7.3",
+    "typescript-eslint": "^8.23.0",
+    "vite": "^6.1.0",
+    "vitest": "^3.0.4"
+  }
+}

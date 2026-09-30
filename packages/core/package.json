@@ -1,0 +1,44 @@
+{
+  "name": "@algoplot/core",
+  "version": "0.1.0",
+  "description": "Headless algorithm-visualization engine: viz structures, recorder, diffing, world replay and player state.",
+  "license": "MIT",
+  "author": "Gerald Lee <gerarldlee@gmail.com>",
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./worker": {
+      "types": "./dist/worker/runner.worker.d.ts",
+      "import": "./dist/worker/runner.worker.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "!src/**/__tests__/**"
+  ],
+  "scripts": {
+    "build": "vite build && tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "sucrase": "^3.35.1",
+    "zustand": "^5.0.2"
+  },
+  "keywords": [
+    "algorithm",
+    "visualization",
+    "animation",
+    "step-player",
+    "recording",
+    "replay"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

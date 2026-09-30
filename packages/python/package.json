@@ -1,0 +1,44 @@
+{
+  "name": "@algoplot/python",
+  "version": "0.1.0",
+  "description": "Python (Pyodide) runtime for @algoplot/core. Import it once and ```algoplot python fences work, at build time and in the worker.",
+  "license": "MIT",
+  "author": "Gerald Lee <gerarldlee@gmail.com>",
+  "type": "module",
+  "sideEffects": [
+    "./dist/index.js",
+    "./dist/workerEntry.js"
+  ],
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./worker": {
+      "types": "./dist/workerEntry.d.ts",
+      "import": "./dist/workerEntry.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "!src/**/__tests__/**"
+  ],
+  "scripts": {
+    "build": "vite build && tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@algoplot/core": "^0.1.0"
+  },
+  "keywords": [
+    "algorithm",
+    "visualization",
+    "python",
+    "pyodide"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

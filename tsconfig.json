@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "useDefineForClassFields": true,
+    "lib": ["ES2021", "DOM", "DOM.Iterable", "WebWorker"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "allowImportingTsExtensions": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@algoplot/core": ["packages/core/src/index.ts"],
+      "@algoplot/core/*": ["packages/core/src/*"],
+      "@algoplot/python": ["packages/python/src/index.ts"],
+      "@algoplot/react": ["packages/react/src/index.ts"],
+      "@algoplot/element": ["packages/element/src/index.ts"],
+      "@algoplot/remark": ["packages/remark/src/index.ts"]
+    },
+    "types": ["vite/client", "node"]
+  },
+  "include": ["packages/*/src", "docs/src", "vitest.config.ts"]
+}
