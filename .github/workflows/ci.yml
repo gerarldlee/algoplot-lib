@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Lets a broken deploy be re-run from the Actions tab after a settings change
+  # without an empty commit (unauthenticated pushes are the only other trigger).
+  workflow_dispatch:
 
 jobs:
   gate:
@@ -29,7 +32,7 @@ jobs:
       - run: node tools/smoke.mjs
 
   deploy-docs:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     needs: gate
     runs-on: ubuntu-latest
     permissions:
