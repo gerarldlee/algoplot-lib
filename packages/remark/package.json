@@ -45,5 +45,14 @@
   ],
   "publishConfig": {
     "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gerarldlee/algoplot-lib.git",
+    "directory": "packages/remark"
+  },
+  "homepage": "https://github.com/gerarldlee/algoplot-lib/tree/main/packages/remark#readme",
+  "bugs": {
+    "url": "https://github.com/gerarldlee/algoplot-lib/issues"
   }
 }
