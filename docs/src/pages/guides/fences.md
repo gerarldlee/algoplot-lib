@@ -65,7 +65,7 @@ markdown: {
 | --- | --- | --- |
 | Emits | `<AlgoPlayer data={{…}} />` MDX node | `<algoplot-player data-payload="…">` |
 | Pipeline | MDX / `@mdx-js/mdx` | plain markdown → HTML |
-| Reader cost | your React bundle | one script tag (`@algoplot/element`) |
+| Reader cost | your React bundle | one script tag (`@algoplot/web`) |
 | Scope requirement | `AlgoPlayer` imported in the file (or `MDXProvider`) | none |
 | Host directive | pass `client: 'client:load'` (Astro) so islands hydrate | n/a — the custom element upgrades itself |
 

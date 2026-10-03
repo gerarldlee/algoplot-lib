@@ -7,7 +7,7 @@ export interface AlgoplotRemarkOptions {
    * the recording as an object expression — an MDX pipeline, with `AlgoPlayer` in
    * scope of the page (import it, or map it through MDXProvider).
    * `'html'` emits `<algoplot-player data-payload="…">` markup for the custom
-   * element in `@algoplot/element` to hydrate — plain markdown pipelines, where MDX
+   * element in `@algoplot/web` to hydrate — plain markdown pipelines, where MDX
    * nodes would not render at all.
    */
   mode?: 'jsx' | 'html';

@@ -6,7 +6,7 @@ layout: ../../layouts/Base.astro
 
 # Element
 
-`@algoplot/element` is the whole player as a custom element. React, the engine and the
+`@algoplot/web` is the whole player as a custom element. React, the engine and the
 stylesheet are bundled into one ES module; styles live in the component's **shadow
 root**, so neither your page's CSS nor the player's can affect the other.
 
@@ -19,7 +19,7 @@ root**, so neither your page's CSS nor the player's can affect the other.
 With a bundler it is one import, which registers the element as a side effect:
 
 ```ts
-import '@algoplot/element';
+import '@algoplot/web';
 ```
 
 This site uses exactly that: the layout imports the package, and every
@@ -79,7 +79,7 @@ duplicate runtime entirely.
 ## API
 
 ```ts
-import { register, AlgoPlayerElement, parsePayload, configFrom } from '@algoplot/element';
+import { register, AlgoPlayerElement, parsePayload, configFrom } from '@algoplot/web';
 
 register('my-player');       // idempotent; auto-registers 'algoplot-player' in a browser
 parsePayload(attr);          // string → RunOutput | null (throws with a reason)

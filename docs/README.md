@@ -30,7 +30,7 @@ docs/
 `astro.config.mjs` loads `@algoplot/remark` with `mode: 'html'`, so every
 `​```algoplot` fence in `src/pages/**` executes at build time and is replaced by an
 `<algoplot-player data-payload="…">` node. `Base.astro` imports
-`@algoplot/element`, which registers the component on page load. A fence that throws
+`@algoplot/web`, which registers the component on page load. A fence that throws
 or exceeds its budget **fails `npm run docs:build`** with the file, fence position and
 error line — the same contract any consumer gets.
 

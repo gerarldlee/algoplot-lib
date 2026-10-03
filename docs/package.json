@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@algoplot/core": "0.1.0",
-    "@algoplot/element": "0.1.0",
+    "@algoplot/web": "0.1.0",
     "@algoplot/python": "0.1.0",
     "@algoplot/react": "0.1.0",
     "@algoplot/remark": "0.1.0",

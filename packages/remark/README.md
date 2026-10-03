@@ -53,7 +53,7 @@ import { AlgoPlayer } from '@algoplot/react';
 <algoplot-player data-payload="{&quot;ok&quot;:true,&quot;steps&quot;:[…]}"></algoplot-player>
 ```
 
-Paired with [`@algoplot/element`](../element) (one `<script type="module">`), that works
+Paired with [`@algoplot/web`](../web) (one `<script type="module">`), that works
 in *any* markdown pipeline — no MDX, no React on the page.
 
 ## Options

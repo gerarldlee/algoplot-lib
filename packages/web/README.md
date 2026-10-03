@@ -1,19 +1,19 @@
-# @algoplot/element
+# @algoplot/web
 
 `<algoplot-player>` — the whole algoplot player as a web component. One self-contained
 ES module: React, the engine and the stylesheet are bundled in, styles live in a
 shadow root, and your page needs no framework, no bundler and no CSS link.
 
 ```html
-<script type="module" src="https://your.cdn/@algoplot/element/dist/index.js"></script>
+<script type="module" src="https://your.cdn/@algoplot/web/dist/index.js"></script>
 
 <!-- typically emitted by @algoplot/remark's html mode: -->
 <algoplot-player data-payload='{"ok":true,"steps":[…]}' autoplay></algoplot-player>
 ```
 
 ```bash
-npm install @algoplot/element
-# bundlers: import '@algoplot/element'; — importing registers the element.
+npm install @algoplot/web
+# bundlers: import '@algoplot/web'; — importing registers the element.
 ```
 
 ## Attributes
@@ -69,7 +69,7 @@ import {
   AlgoPlayerElement,    // the class, for extending or defining under another tag
   parsePayload,         // string → RunOutput (null when absent)
   configFrom,           // attributes → AlgoPlayer props
-} from '@algoplot/element';
+} from '@algoplot/web';
 ```
 
 Importing the package in node (tests, SSR) is side-effect-safe: registration is gated
