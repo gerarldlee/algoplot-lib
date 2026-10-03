@@ -33,7 +33,7 @@ function sh(cmd, args, opts = {}) {
 }
 
 try {
-  const packages = ['core', 'python', 'react', 'remark', 'element'];
+  const packages = ['core', 'python', 'react', 'remark', 'web', 'markdown'];
   const tarballs = {};
   const listings = {};
   for (const p of packages) {
@@ -52,7 +52,8 @@ try {
     python: ['dist/index.js', 'dist/workerEntry.js'],
     react: ['dist/index.js', 'styles.css'],
     remark: ['dist/index.js', 'dist/fence.d.ts'],
-    element: ['dist/index.js'],
+    web: ['dist/index.js'],
+    markdown: ['dist/index.js'],
   };
   for (const [p, files] of Object.entries(expect)) {
     for (const f of files) {
@@ -132,12 +133,17 @@ try {
     assert.match(html, /view-area/);
     ok('react: renderToString(AlgoPlayer) emits the player');
 
-    // --- element: node-safe import and the pure helpers
-    const el = await import('@algoplot/element');
+    // --- web: node-safe import and the pure helpers
+    const el = await import('@algoplot/web');
     assert.equal(typeof el.register, 'function');
     assert.equal(el.parsePayload(JSON.stringify(js)).ok, true);
     assert.deepEqual(el.configFrom({ getAttribute: (n) => (n === 'autoplay' ? '' : null) }), { autoplay: true });
-    ok('element: imports safely in node; parsePayload/configFrom work');
+    ok('web: imports safely in node; parsePayload/configFrom work');
+
+    // --- markdown: node-safe import
+    const md = await import('@algoplot/markdown');
+    assert.equal(typeof md.mountAll, 'function');
+    ok('markdown: imports safely in node');
 
     // --- python: registers on import, runs through npm pyodide
     await import('@algoplot/python');
