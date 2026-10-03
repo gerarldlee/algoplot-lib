@@ -63,13 +63,54 @@ on parse, so `getAttribute('data-payload')` reads back the exact JSON.
 
 ## API
 
+### `register(tagName?)`
+
+Define the custom element. Idempotent — safe to call multiple times. Auto-runs on
+import in a browser. Default tag: `'algoplot-player'`.
+
 ```ts
-import {
-  register,             // define('algoplot-player') — idempotent, runs on import in a browser
-  AlgoPlayerElement,    // the class, for extending or defining under another tag
-  parsePayload,         // string → RunOutput (null when absent)
-  configFrom,           // attributes → AlgoPlayer props
-} from '@algoplot/web';
+import { register } from '@algoplot/web';
+
+register();                  // defines 'algoplot-player'
+register('my-player');       // defines under a custom tag
+```
+
+### `AlgoPlayerElement`
+
+The element class, for extending or defining under another tag.
+
+```ts
+import { AlgoPlayerElement } from '@algoplot/web';
+
+class MyPlayer extends AlgoPlayerElement {
+  connectedCallback() {
+    super.connectedCallback();
+  }
+}
+customElements.define('my-player', MyPlayer);
+```
+
+### `parsePayload(raw)`
+
+Parse the `data-payload` attribute. Returns `RunOutput | null`. Throws with a
+descriptive message on invalid JSON or non-`RunOutput` shape.
+
+```ts
+import { parsePayload } from '@algoplot/web';
+
+const output = parsePayload('{"ok":true,"steps":[]}');
+```
+
+### `configFrom(el)`
+
+Map element attributes to `AlgoPlayer` props. Pure function — works on any object
+with `getAttribute`.
+
+```ts
+import { configFrom } from '@algoplot/web';
+
+const props = configFrom(el);
+// { autoplay?: boolean, logs?: boolean, memory?: boolean, placeholder?: string }
 ```
 
 Importing the package in node (tests, SSR) is side-effect-safe: registration is gated

@@ -1,10 +1,10 @@
 ---
-title: Element
+title: Web
 description: '<algoplot-player> — the player as a web component, for pages with no framework and no build step.'
 layout: ../../layouts/Base.astro
 ---
 
-# Element
+# Web
 
 `@algoplot/web` is the whole player as a custom element. React, the engine and the
 stylesheet are bundled into one ES module; styles live in the component's **shadow
@@ -78,12 +78,55 @@ duplicate runtime entirely.
 
 ## API
 
-```ts
-import { register, AlgoPlayerElement, parsePayload, configFrom } from '@algoplot/web';
+### `register(tagName?)`
 
-register('my-player');       // idempotent; auto-registers 'algoplot-player' in a browser
-parsePayload(attr);          // string → RunOutput | null (throws with a reason)
-configFrom(el);              // the attribute → prop mapping, as pure functions
+Define the custom element. Idempotent — safe to call multiple times. Auto-runs on
+import in a browser. Default tag: `'algoplot-player'`.
+
+```ts
+import { register } from '@algoplot/web';
+
+register();                  // defines 'algoplot-player'
+register('my-player');       // defines under a custom tag
+```
+
+### `AlgoPlayerElement`
+
+The element class, for extending or defining under another tag.
+
+```ts
+import { AlgoPlayerElement } from '@algoplot/web';
+
+class MyPlayer extends AlgoPlayerElement {
+  connectedCallback() {
+    super.connectedCallback();
+    // custom setup
+  }
+}
+customElements.define('my-player', MyPlayer);
+```
+
+### `parsePayload(raw)`
+
+Parse the `data-payload` attribute. Returns `RunOutput | null`. Throws with a
+descriptive message on invalid JSON or non-`RunOutput` shape.
+
+```ts
+import { parsePayload } from '@algoplot/web';
+
+const output = parsePayload('{"ok":true,"steps":[]}');
+```
+
+### `configFrom(el)`
+
+Map element attributes to `AlgoPlayer` props. Pure function — works on any object
+with `getAttribute`.
+
+```ts
+import { configFrom } from '@algoplot/web';
+
+const props = configFrom(el);
+// { autoplay?: boolean, logs?: boolean, memory?: boolean, placeholder?: string }
 ```
 
 Importing the package in node (tests, SSR) is side-effect-safe: registration is gated

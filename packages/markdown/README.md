@@ -29,12 +29,50 @@ Use `@algoplot/remark` when you control the build pipeline (MDX, Astro, VitePres
 
 Scan `root` (default `document.body`) for `pre > code.language-algoplot` elements and mount a live `<AlgoPlayer>` in place of each one.
 
+```ts
+import { mountAll } from '@algoplot/markdown';
+
+const result = await mountAll(document.body, {
+  render: (output) => <AlgoPlayer data={output} />,
+  onError: (err, el) => console.error('fence failed:', err),
+});
+
+console.log(`mounted ${result.mounted} players`);
+// later:
+result.dispose();
+```
+
 **Options:**
 
-- `render` — custom component render, receives the `RunOutput` and must return React elements. Defaults to `<AlgoPlayer data={output} />`.
-- `onError` — called when a fence fails to execute. Receives the error and the original code block element.
+| Option | Type | Description |
+| --- | --- | --- |
+| `render` | `(output: RunOutput) => ReactNode` | Custom component render. Defaults to `<AlgoPlayer data={output} />`. |
+| `onError` | `(error: Error, codeBlock: Element) => void` | Called when a fence fails to execute. |
 
-**Returns:** `{ mounted: number, dispose: () => void }`
+**Returns:** `MountResult`
+
+```ts
+interface MountResult {
+  mounted: number;              // number of fences mounted by this call
+  dispose: () => void;         // removes all players mounted by this call
+}
+```
+
+### Fence format
+
+The scanner looks for `pre > code.language-algoplot` elements. The fence body can
+include an info string:
+
+````md
+```algoplot js {"input":{"arr":[3,1,2]}}
+const a = viz.array(input.arr);
+a.swap(0, 2);
+viz.step('swapped');
+```
+````
+
+The info string is parsed by `@algoplot/remark`'s `parseFence` — same strict options
+(`input`, `seed`, `maxSteps`, `maxMs`), same error messages.
 
 ## License
 
