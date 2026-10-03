@@ -1,5 +1,5 @@
 {
-  "name": "@algoplot/element",
+  "name": "@algoplot/web",
   "version": "0.1.0",
   "description": "<algoplot-player> custom element: a self-contained, framework-free algoplot player for any HTML page or static-site generator.",
   "license": "MIT",
@@ -39,9 +39,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gerarldlee/algoplot-lib.git",
-    "directory": "packages/element"
+    "directory": "packages/web"
   },
-  "homepage": "https://github.com/gerarldlee/algoplot-lib/tree/main/packages/element#readme",
+  "homepage": "https://github.com/gerarldlee/algoplot-lib/tree/main/packages/web#readme",
   "bugs": {
     "url": "https://github.com/gerarldlee/algoplot-lib/issues"
   }

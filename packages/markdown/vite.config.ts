@@ -1,14 +1,13 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import { resolve } from 'path';
 
 export default defineConfig({
-  plugins: [react()],
   build: {
+    target: 'es2021',
+    sourcemap: true,
     lib: {
-      entry: resolve(__dirname, 'src/index.tsx'),
+      entry: { index: 'src/index.tsx' },
       formats: ['es'],
-      fileName: () => 'index.js',
+      fileName: (_format, entryName) => `${entryName}.js`,
     },
     rollupOptions: {
       external: ['react', 'react-dom', 'react-dom/client', 'react/jsx-runtime'],
