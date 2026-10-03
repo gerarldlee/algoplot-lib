@@ -21,7 +21,8 @@
       "@algoplot/core/*": ["packages/core/src/*"],
       "@algoplot/python": ["packages/python/src/index.ts"],
       "@algoplot/react": ["packages/react/src/index.ts"],
-      "@algoplot/element": ["packages/element/src/index.ts"],
+      "@algoplot/web": ["packages/web/src/index.ts"],
+      "@algoplot/markdown": ["packages/markdown/src/index.tsx"],
       "@algoplot/remark": ["packages/remark/src/index.ts"]
     },
     "types": ["vite/client", "node"]

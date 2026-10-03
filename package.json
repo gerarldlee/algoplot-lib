@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "test": "vitest run",
-    "build": "npm run build -w @algoplot/core && npm run build -w @algoplot/python && npm run build -w @algoplot/react && npm run build -w @algoplot/remark && npm run build -w @algoplot/element",
+    "build": "npm run build -w @algoplot/core && npm run build -w @algoplot/python && npm run build -w @algoplot/react && npm run build -w @algoplot/remark && npm run build -w @algoplot/web && npm run build -w @algoplot/markdown",
     "api": "typedoc",
     "docs": "npm run dev -w docs",
     "docs:build": "npm run api && npm run build -w docs"

@@ -1,0 +1,64 @@
+{
+  "name": "@algoplot/markdown",
+  "version": "0.1.0",
+  "description": "Mount live algoplot players onto ```algoplot code fences in any markdown-rendered HTML.",
+  "license": "MIT",
+  "author": "Gerald Lee <gerarldlee@gmail.com>",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "!src/**/__tests__/**"
+  ],
+  "scripts": {
+    "build": "vite build && tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@algoplot/core": "^0.1.0",
+    "@algoplot/react": "^0.1.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "~5.7.3",
+    "vite": "^6.1.0",
+    "vitest": "^3.0.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gerarldlee/algoplot-lib.git",
+    "directory": "packages/markdown"
+  },
+  "homepage": "https://github.com/gerarldlee/algoplot-lib/tree/main/packages/markdown#readme",
+  "bugs": {
+    "url": "https://github.com/gerarldlee/algoplot-lib/issues"
+  },
+  "keywords": [
+    "markdown",
+    "algorithm",
+    "visualization",
+    "runtime"
+  ]
+}

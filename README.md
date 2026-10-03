@@ -1,5 +1,11 @@
 # algoplot
 
+[![npm](https://img.shields.io/npm/v/@algoplot/core.svg)](https://www.npmjs.com/package/@algoplot/core)
+[![npm](https://img.shields.io/npm/v/@algoplot/react.svg)](https://www.npmjs.com/package/@algoplot/react)
+[![npm](https://img.shields.io/npm/v/@algoplot/markdown.svg)](https://www.npmjs.com/package/@algoplot/markdown)
+[![npm](https://img.shields.io/npm/v/@algoplot/remark.svg)](https://www.npmjs.com/package/@algoplot/remark)
+[![npm](https://img.shields.io/npm/v/@algoplot/web.svg)](https://www.npmjs.com/package/@algoplot/web)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/gerarldlee/algoplot-lib/actions/workflows/ci.yml/badge.svg)](https://github.com/gerarldlee/algoplot-lib/actions/workflows/ci.yml)
 
 Run algorithm code, record every step as a diff of the visualised world, and play it
@@ -31,7 +37,8 @@ packages you can use independently.
 | [`@algoplot/core`](packages/core) | The engine: the `viz.*` API user code calls, the recorder, diffing and world replay, the player store, the worker runner, and the language registry (JavaScript and TypeScript built in). |
 | [`@algoplot/remark`](packages/remark) | Runs ``` `algoplot` fences at build time and replaces them with a player. |
 | [`@algoplot/react`](packages/react) | `AlgoPlayer` + the transport, memory chart, log panel and 17 structure views. |
-| [`@algoplot/element`](packages/element) | `<algoplot-player>`, a self-contained web component: one script tag, no framework, styles in a shadow root. |
+| [`@algoplot/web`](packages/web) | `<algoplot-player>`, a self-contained web component: one script tag, no framework, styles in a shadow root. |
+| [`@algoplot/markdown`](packages/markdown) | Runtime DOM scanner — mounts live players onto ` ```algoplot ` fences in any rendered HTML. |
 | [`@algoplot/python`](packages/python) | Registers Python (Pyodide) into the core registry — for build-time fences and in the worker. Import once, ` ```algoplot python ` works. |
 
 ## Pick your integration
@@ -40,7 +47,7 @@ packages you can use independently.
   [fences](docs/src/pages/guides/fences.md) · [React](docs/src/pages/guides/react.md)
 - **Plain markdown** — remark in `html` mode emits `<algoplot-player data-payload="…">`;
   a script tag does the rest: [fences](docs/src/pages/guides/fences.md) ·
-  [element](docs/src/pages/guides/element.md)
+  [web](docs/src/pages/guides/web.md)
 - **Your own React app** — `executeRun` (or the worker) on one side, `AlgoPlayer` on
   the other: [getting started](docs/src/pages/guides/getting-started.md)
 - **Python** — [python](docs/src/pages/guides/python.md)
