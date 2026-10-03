@@ -11,6 +11,7 @@ import { VizGrid } from './grid';
 import { VizList } from './list';
 import { VizMatrix } from './matrix';
 import { VizNet } from './net';
+import { VizOctree } from './octree';
 import { VizPlot } from './plot';
 import { VizSequence } from './sequence';
 import { VizString } from './string';
@@ -80,6 +81,10 @@ export class VizApi {
 
   net(name?: string): VizNet {
     return new VizNet(this.rec, this.nextId('nt'), name);
+  }
+
+  octree(extent = 1): VizOctree {
+    return new VizOctree(this.rec, this.nextId('oc'), extent);
   }
 
   gantt(rows: string[], name?: string): VizGantt {

@@ -26,6 +26,7 @@ export * from './viz/grid';
 export * from './viz/list';
 export * from './viz/matrix';
 export * from './viz/net';
+export * from './viz/octree';
 export * from './viz/plot';
 export * from './viz/sequence';
 export * from './viz/string';

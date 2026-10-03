@@ -4,7 +4,7 @@ The headless engine: the `viz.*` API that user code calls, a recorder that turns
 step into a diff of the visualised world, replay/materialisation, the player store,
 the worker-backed runner client, and the pluggable language registry. No UI framework
 involvement — render it with [`@algoplot/react`](../react),
-[`@algoplot/element`](../element), or your own code.
+[`@algoplot/web`](../web), or your own code.
 
 ```bash
 npm install @algoplot/core
@@ -116,7 +116,7 @@ const runner = runnerFor('js');  // falls back to js; an unregistered id throws
 - **execution**: `executeRun`, `Recorder`, `Rng`, `collect`, `LANGUAGES`
 - **world model**: `RunOutput`, `Step`, `World`, the structure data types, `applyPatch`
   / `applySteps` / `materializeAt` replay helpers, `diffWorlds`
-- **viz API**: `VizApi` and every structure type (`VizArray`, `VizGraph`, `VizTree`, …)
+- **viz API**: `VizApi` and every structure type (`VizArray`, `VizGraph`, `VizTree`, `VizOctree`, …)
 - **player**: `createPlayerStore`, `PlayerState`, `WorkerRunner`
 - **protocol**: the worker message types, for custom transports
 

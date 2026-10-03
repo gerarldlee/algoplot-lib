@@ -10,6 +10,7 @@ import type { GridData } from '@algoplot/core';
 import type { ListData } from '@algoplot/core';
 import type { MatrixData } from '@algoplot/core';
 import type { NetData } from '@algoplot/core';
+import type { OctreeData } from '@algoplot/core';
 import type { PlotData } from '@algoplot/core';
 import type { SeqData } from '@algoplot/core';
 import type { StringData } from '@algoplot/core';
@@ -28,6 +29,7 @@ import { GridView } from './GridView';
 import { ListView } from './ListView';
 import { MatrixView } from './MatrixView';
 import { NetView } from './NetView';
+import { OctreeView } from './OctreeView';
 import { PlotView } from './PlotView';
 import { SequenceView } from './SequenceView';
 import { StringView } from './StringView';
@@ -62,6 +64,8 @@ export function StructView({ data }: { data: StructData }) {
       return <PlotView data={data as unknown as PlotData} />;
     case 'net':
       return <NetView data={data as unknown as NetData} />;
+    case 'octree':
+      return <OctreeView data={data as unknown as OctreeData} />;
     case 'gantt':
       return <GanttView data={data as unknown as GanttData} />;
     case 'book':

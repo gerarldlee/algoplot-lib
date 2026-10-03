@@ -16,7 +16,7 @@ re-execution, no `eval`.
 | Your context | Stack | Guide |
 | --- | --- | --- |
 | Docs in MDX / React | `@algoplot/remark` (jsx) + `@algoplot/react` | [Fences](fences/) · [React](react/) |
-| Plain markdown, any generator | `@algoplot/remark` (html) + `@algoplot/element` | [Fences](fences/) · [Element](element/) |
+| Plain markdown, any generator | `@algoplot/remark` (html) + `@algoplot/web` | [Fences](fences/) · [Web](web/) |
 | An application | `@algoplot/core` + `@algoplot/react` | below · [React](react/) |
 
 ## The application path, end to end
@@ -74,6 +74,21 @@ interface RunOutput {
 The player materialises a world per step index from the diffs — that is why scrubbing
 is cheap and why the recording, not the browser heap, is what the memory chart shows.
 
+## 3D structures: octree
+
+`viz.octree(extent)` creates a volumetric quadtree — a tree of axis-aligned cubes. Subdivide cubes into 8 octants, mark leaves, and annotate:
+
+```js
+const oc = viz.octree(16);
+const root = oc.rootCube();
+oc.subdivide(root, [0, 1, 2, 3]);  // build only the octants you need
+oc.leaf('n1');                      // mark a cube as final
+oc.color('n1', 'accent');           // persistent colour
+oc.point(1, 2, 3);                  // a point in the volume
+oc.sphere(0, 0, 0, 5);              // a query region
+viz.step('octree built');
+```
+
 ## Determinism and budgets
 
 - **`seed`** feeds a deterministic RNG; same code + input + seed ⇒ same recording.
@@ -91,5 +106,5 @@ One import turns ` ```algoplot python ` on, at build time and in the worker — 
 
 - The full fence grammar: [Fences](fences/)
 - Your own controls around the store: [React](react/)
-- A page with no build tooling at all: [Element](element/)
+- A page with no build tooling at all: [Web](web/)
 - Live examples on this site: [Demos](demos/)

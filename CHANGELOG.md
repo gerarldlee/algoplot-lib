@@ -20,6 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Octree viz structure (`viz.octree()`) with 3D axonometric projection view
+
+### Added
+
 - New `@algoplot/markdown` package — runtime DOM scanner that mounts live players onto ` ```algoplot ` fences in any rendered HTML.
 
 ### Changed

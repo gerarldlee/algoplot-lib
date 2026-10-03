@@ -27,7 +27,7 @@ That fence is **executed at build time** by `@algoplot/remark`. What ships to th
 reader is a precomputed recording and a player — no code, no eval, no network: the
 step budget fails *your* build, not their browser.
 
-This is the engine extracted from the algoplot teaching app, published as five
+This is the engine extracted from the algoplot teaching app, published as six
 packages you can use independently.
 
 ## Packages
@@ -36,7 +36,7 @@ packages you can use independently.
 | --- | --- |
 | [`@algoplot/core`](packages/core) | The engine: the `viz.*` API user code calls, the recorder, diffing and world replay, the player store, the worker runner, and the language registry (JavaScript and TypeScript built in). |
 | [`@algoplot/remark`](packages/remark) | Runs ``` `algoplot` fences at build time and replaces them with a player. |
-| [`@algoplot/react`](packages/react) | `AlgoPlayer` + the transport, memory chart, log panel and 17 structure views. |
+| [`@algoplot/react`](packages/react) | `AlgoPlayer` + the transport, memory chart, log panel and 18 structure views. |
 | [`@algoplot/web`](packages/web) | `<algoplot-player>`, a self-contained web component: one script tag, no framework, styles in a shadow root. |
 | [`@algoplot/markdown`](packages/markdown) | Runtime DOM scanner — mounts live players onto ` ```algoplot ` fences in any rendered HTML. |
 | [`@algoplot/python`](packages/python) | Registers Python (Pyodide) into the core registry — for build-time fences and in the worker. Import once, ` ```algoplot python ` works. |
