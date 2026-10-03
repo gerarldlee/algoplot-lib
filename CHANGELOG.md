@@ -16,11 +16,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `@algoplot/web@0.2.0`
 - `@algoplot/markdown@0.2.0`
 
-## [Unreleased]
+## [0.3.0] - 2026-10-03
 
 ### Added
 
 - Octree viz structure (`viz.octree()`) with 3D axonometric projection view
+
+### Published
+
+- `@algoplot/core@0.3.0`
+- `@algoplot/python@0.3.0`
+- `@algoplot/react@0.3.0`
+- `@algoplot/remark@0.3.0`
+- `@algoplot/web@0.3.0`
+- `@algoplot/markdown@0.3.0`
+
+## [Unreleased]
 
 ### Added
 
