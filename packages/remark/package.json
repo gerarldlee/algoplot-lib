@@ -1,6 +1,6 @@
 {
   "name": "@algoplot/remark",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Remark plugin that turns ```algoplot fences into playable, precomputed players — executed at build time, no eval in the reader's browser.",
   "license": "MIT",
   "author": "Gerald Lee <gerarldlee@gmail.com>",
@@ -22,14 +22,14 @@
     "build": "vite build && tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@algoplot/core": "^0.3.0"
+    "@algoplot/core": "^0.4.0"
   },
   "devDependencies": {
     "remark": "^14.0.3",
     "vfile": "^6.0.1"
   },
   "peerDependencies": {
-    "@algoplot/python": "^0.3.0"
+    "@algoplot/python": "^0.4.0"
   },
   "peerDependenciesMeta": {
     "@algoplot/python": {

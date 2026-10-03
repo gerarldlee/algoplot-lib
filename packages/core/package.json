@@ -1,6 +1,6 @@
 {
   "name": "@algoplot/core",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Headless algorithm-visualization engine: viz structures, recorder, diffing, world replay and player state.",
   "license": "MIT",
   "author": "Gerald Lee <gerarldlee@gmail.com>",

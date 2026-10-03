@@ -31,6 +31,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `@algoplot/web@0.3.0`
 - `@algoplot/markdown@0.3.0`
 
+## [0.4.0] - 2026-10-03
+
+### Published
+
+- `@algoplot/core@0.4.0`
+- `@algoplot/python@0.4.0`
+- `@algoplot/react@0.4.0`
+- `@algoplot/remark@0.4.0`
+- `@algoplot/web@0.4.0`
+- `@algoplot/markdown@0.4.0`
+
 ## [Unreleased]
 
 ### Added
